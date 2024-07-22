@@ -22,9 +22,12 @@ static bool send_webhook(struct discord_webhook &webhook, std::string &response)
     }
 
     json original_json;
-    original_json["username"] = webhook.name;
     if (!webhook.avatar.empty()) {
         original_json["avatar_url"] = webhook.avatar;
+    }
+
+    if (!webhook.name.empty()) {
+        original_json["username"] = webhook.name;
     }
 
     if (chunks.size() == 0) {
